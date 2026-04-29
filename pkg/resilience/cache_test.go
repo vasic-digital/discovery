@@ -332,6 +332,7 @@ func TestOfflineCache_ConcurrentCacheChange(t *testing.T) {
 }
 
 func TestOfflineCache_ConcurrentReadWrite(t *testing.T) {
+	// bluff-scan: no-assert-ok (concurrency test — go test -race catches data races; absence of panic == correctness)
 	cache := NewOfflineCache(100, newTestLogger())
 
 	var wg sync.WaitGroup
