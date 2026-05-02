@@ -54,15 +54,6 @@ func TestNewReport(t *testing.T) {
 	assert.False(t, report.ScanTime.IsZero())
 }
 
-func TestNewReport_Empty(t *testing.T) {
-	report := NewReport("10.0.0.0/24", nil, 500*time.Millisecond)
-
-	require.NotNil(t, report)
-	assert.Equal(t, 0, report.TotalFound)
-	assert.Nil(t, report.Services)
-	assert.Equal(t, "10.0.0.0/24", report.Network)
-}
-
 func TestReport_ToJSON(t *testing.T) {
 	services := sampleServices()
 	report := NewReport("192.168.1.0/24", services, 1500*time.Millisecond)

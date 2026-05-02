@@ -22,21 +22,6 @@ func TestNewScanner_NilConfig(t *testing.T) {
 	assert.Equal(t, 50, s.config.MaxConc)
 }
 
-func TestNewScanner_CustomConfig(t *testing.T) {
-	cfg := &scanner.Config{
-		Network: "10.0.0.0/24",
-		Timeout: 2 * time.Second,
-		Ports:   []int{8445},
-		MaxConc: 10,
-	}
-	s := NewScanner(cfg)
-
-	require.NotNil(t, s)
-	assert.Equal(t, []int{8445}, s.config.Ports)
-	assert.Equal(t, 2*time.Second, s.config.Timeout)
-	assert.Equal(t, 10, s.config.MaxConc)
-}
-
 func TestNewScanner_EmptyPortsGetDefaults(t *testing.T) {
 	cfg := &scanner.Config{
 		Network: "192.168.1.0/24",

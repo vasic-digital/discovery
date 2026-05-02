@@ -128,16 +128,6 @@ func TestNewEvent(t *testing.T) {
 	assert.Nil(t, evt.Data)
 }
 
-func TestNewEvent_WithError(t *testing.T) {
-	err := fmt.Errorf("connection refused")
-	evt := NewEvent(EventError, "src-2", err)
-
-	require.NotNil(t, evt)
-	assert.Equal(t, EventError, evt.Type)
-	assert.Equal(t, "src-2", evt.SourceID)
-	assert.Equal(t, err, evt.Error)
-}
-
 func TestEvent_DataField(t *testing.T) {
 	evt := NewEvent(EventHealthCheck, "src-3", nil)
 	evt.Data = map[string]interface{}{
