@@ -143,7 +143,7 @@ func TestAnnouncer_SendsToMulticast(t *testing.T) {
 
 	conn, err := net.ListenMulticastUDP("udp4", nil, addr)
 	if err != nil {
-		t.Skipf("multicast not available: %v", err)
+		t.Skipf("multicast not available: %v (SKIP-OK: #multicast-unavailable)", err)
 	}
 	defer conn.Close()
 	require.NoError(t, conn.SetReadDeadline(time.Now().Add(3*time.Second)))
